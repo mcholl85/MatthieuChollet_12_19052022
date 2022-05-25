@@ -26,9 +26,9 @@ function ActivityChart({ sessions }) {
 
   return (
     <section className="activity">
-      <header className="activity__title">Activité quotidienne</header>
-      <ResponsiveContainer>
-        <BarChart className="activity__chart" barGap={8} data={sessions}>
+      <h2 className="activity__title">Activité quotidienne</h2>
+      <ResponsiveContainer className="activity__chart" width="92%" height="90%">
+        <BarChart barGap={8} data={sessions}>
           <CartesianGrid strokeDasharray="2 2" vertical={false} />
           <XAxis
             dataKey="day"
@@ -55,7 +55,7 @@ function ActivityChart({ sessions }) {
           />
           <Tooltip content={<CustomTooltip />} />
           <Legend
-            wrapperStyle={{ paddingTop: '20px', paddingRight: '70px' }}
+            wrapperStyle={{ marginTop: '-40px', paddingRight: '20px' }}
             verticalAlign="top"
             align="right"
             iconSize={8}

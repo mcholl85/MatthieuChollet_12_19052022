@@ -3,7 +3,11 @@
 
 @import './utils/variables';
 
-@import './components/navbar';
-
 @import './pages/dashboard';
+
+@import './components/navbar';
+@import './components/header';
 @import './components/activityChart';
+@import './components/averageChart';
+@import './components/performanceChart';
+@import './components/scoreChart';

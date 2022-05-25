@@ -1,10 +1,10 @@
 function Header({ firstName }) {
   return (
     <header>
-      <h1 className="dashboard__heading">
-        Bonjour <span className="dashboard__heading--red">{firstName}</span>
+      <h1 className="header">
+        Bonjour <span className="header--red">{firstName}</span>
       </h1>
-      <p className="dashboard__message">
+      <p className="message">
         Félicitation ! Vous avez explosé vos objectifs hier 👏
       </p>
     </header>

@@ -1,0 +1,18 @@
+.score {
+  height: 220px;
+  width: 22%;
+  background-color: #fbfbfb;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__title {
+    width: 80%;
+    font-size: 15px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #20253a;
+    padding-top: 25px;
+  }
+}

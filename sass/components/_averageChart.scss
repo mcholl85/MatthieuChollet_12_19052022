@@ -1,0 +1,30 @@
+.average {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+  height: 220px;
+  width: 22%;
+  border-radius: 5px;
+  background-color: #ff0000;
+  &__title {
+    width: 80%;
+    padding-bottom: 10px;
+    font-size: 15px;
+    color: #ffffff;
+    line-height: 24px;
+    opacity: 0.5;
+  }
+  &__chart {
+    &__tooltip {
+      font-size: 10px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #000000;
+      background-color: #ffffff;
+      padding: 6px;
+      text-align: center;
+    }
+  }
+}

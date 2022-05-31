@@ -1,13 +1,16 @@
 .header {
-  font-size: 48px;
-  font-weight: 500;
-  line-height: 24px;
-  &--red {
-    color: $color-db-h1-name;
+  grid-column: 1 / span 3;
+  &__title {
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 24px;
+    &--red {
+      color: $color-db-h1-name;
+    }
   }
-}
-.message {
-  font-size: 18px;
-  margin-top: 40px;
-  margin-bottom: 60px;
+  &__message {
+    font-size: 18px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+  }
 }

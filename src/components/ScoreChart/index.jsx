@@ -7,7 +7,7 @@ function ScoreChart({ score }) {
   ];
 
   return (
-    <section className="score">
+    <div className="score">
       <h2 className="score__title">Score</h2>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
@@ -52,7 +52,7 @@ function ScoreChart({ score }) {
           </text>
         </PieChart>
       </ResponsiveContainer>
-    </section>
+    </div>
   );
 }
 

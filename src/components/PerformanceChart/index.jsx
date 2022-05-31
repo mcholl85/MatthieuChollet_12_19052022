@@ -27,7 +27,7 @@ function PerformanceChart({ data }) {
   };
 
   return (
-    <section className="performance">
+    <div className="performance">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart cx="50%" cy="50%" outerRadius="60%" data={data.data}>
           <PolarGrid stroke="#FFFFFF" radialLines={false} />
@@ -43,7 +43,7 @@ function PerformanceChart({ data }) {
           <Radar dataKey="value" fill="#FF0101" fillOpacity={0.7} />
         </RadarChart>
       </ResponsiveContainer>
-    </section>
+    </div>
   );
 }
 

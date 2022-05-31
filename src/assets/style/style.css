@@ -20,13 +20,24 @@ body {
 /* dashboard */
 .dashboard {
   margin: 60px 90px 60px 15%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3%;
 }
-.dashboard__charts-3 {
+.dashboard__charts {
+  grid-column: 1/span 2;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 30px;
-  padding: 30px 0;
+  justify-content: space-between;
 }
+.dashboard__charts__3 {
+  grid-column: 2/span 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3%;
+}
+
 .nav {
   background-color: #020203;
   position: relative;
@@ -51,7 +62,7 @@ body {
   background-color: #020203;
   top: 100%;
   left: 0;
-  height: 100vw;
+  height: 125vh;
   align-items: center;
   justify-content: space-evenly;
 }
@@ -76,15 +87,17 @@ body {
 }
 
 .header {
+  grid-column: 1/span 3;
+}
+.header__title {
   font-size: 48px;
   font-weight: 500;
   line-height: 24px;
 }
-.header--red {
+.header__title--red {
   color: #ff0101;
 }
-
-.message {
+.header__message {
   font-size: 18px;
   margin-top: 40px;
   margin-bottom: 60px;
@@ -96,7 +109,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 320px;
-  width: 70%;
   border-radius: 5px;
   background-color: #fbfbfb;
   padding: 20px 10px;
@@ -127,7 +139,6 @@ body {
   justify-content: center;
   padding: 20px 10px;
   height: 220px;
-  width: 22%;
   border-radius: 5px;
   background-color: #ff0000;
 }
@@ -150,7 +161,6 @@ body {
 }
 
 .performance {
-  width: 22%;
   height: 220px;
   display: flex;
   justify-content: center;
@@ -161,7 +171,6 @@ body {
 
 .score {
   height: 220px;
-  width: 22%;
   background-color: #fbfbfb;
   border-radius: 5px;
   display: flex;
@@ -176,6 +185,51 @@ body {
   font-weight: 500;
   color: #20253a;
   padding-top: 25px;
+}
+
+.count {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.count__article {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fbfbfb;
+  padding: 30px;
+  gap: 24px;
+}
+.count__article__icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+}
+.count__article__icon--calorie {
+  background-color: rgba(255, 0, 0, 0.07);
+}
+.count__article__icon--protein {
+  background-color: rgba(74, 184, 255, 0.1);
+}
+.count__article__icon--glucide {
+  background-color: rgba(249, 206, 35, 0.1);
+}
+.count__article__icon--lipide {
+  background-color: rgba(253, 81, 129, 0.1);
+}
+.count__article__data {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.count__article__unit {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #74798c;
 }
 
 /*# sourceMappingURL=style.css.map */

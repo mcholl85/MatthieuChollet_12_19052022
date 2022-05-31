@@ -61,7 +61,7 @@ function AverageChart({ sessions }) {
   };
 
   return (
-    <section className="average">
+    <div className="average">
       <h2 className="average__title">Durée moyenne des sessions</h2>
       <ResponsiveContainer className="average__chart" width="92%" height="80%">
         <LineChart data={sessions}>
@@ -97,7 +97,7 @@ function AverageChart({ sessions }) {
           />
         </LineChart>
       </ResponsiveContainer>
-    </section>
+    </div>
   );
 }
 

@@ -15,23 +15,19 @@ function Dashboard() {
   const performance = useFetch(userId, 'performance');
 
   return (
-    !user.error &&
-    !user.isLoading && (
+    user.data && (
       <main className="dashboard">
         <Header firstName={user.data.userInfos.firstName} />
-
-        {!activity.error && !activity.isLoading && (
-          <ActivityChart sessions={activity.data.sessions} />
-        )}
-        <div className="dashboard__charts-3">
-          {!averageSessions.error && !averageSessions.isLoading && (
-            <AverageChart sessions={averageSessions.data.sessions} />
-          )}
-          {!performance.error && !performance.isLoading && (
-            <PerformanceChart data={performance.data} />
-          )}
-          <ScoreChart score={user.data.score || user.data.todayScore} />
-        </div>
+        <section className="dashboard__charts">
+          {activity.data && <ActivityChart sessions={activity.data.sessions} />}
+          <div className="dashboard__charts__3">
+            {averageSessions.data && (
+              <AverageChart sessions={averageSessions.data.sessions} />
+            )}
+            {performance.data && <PerformanceChart data={performance.data} />}
+            <ScoreChart score={user.data.score || user.data.todayScore} />
+          </div>
+        </section>
         <CountChart
           calorie={user.data.keyData.calorieCount}
           protein={user.data.keyData.proteinCount}

@@ -1,0 +1,44 @@
+.count {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  &__article {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #fbfbfb;
+    padding: 30px;
+    gap: 24px;
+    &__icon {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: $radius-icon;
+      &--calorie {
+        background-color: $color-icon-calories;
+      }
+      &--protein {
+        background-color: $color-icon-proteines;
+      }
+      &--glucide {
+        background-color: $color-icon-glucides;
+      }
+      &--lipide {
+        background-color: $color-icon-lipides;
+      }
+    }
+    &__data {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 24px;
+    }
+    &__unit {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #74798c;
+    }
+  }
+}

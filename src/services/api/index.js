@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 export function useFetch(userId, params) {
   const [data, setData] = useState(true);
@@ -26,3 +27,8 @@ export function useFetch(userId, params) {
   }, [url]);
   return { isLoading, data: data.data, error };
 }
+
+useFetch.propTypes = {
+  userId: PropTypes.string,
+  params: PropTypes.string,
+};

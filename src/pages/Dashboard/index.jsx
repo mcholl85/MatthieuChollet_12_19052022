@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useFetch } from '../../utils/hooks';
+import { useFetch } from '../../services/api';
 import Header from '../../components/Header';
 import ActivityChart from '../../components/ActivityChart';
 import AverageChart from '../../components/AverageChart';

@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
+import PropTypes from 'prop-types';
 
 function ActivityChart({ sessions }) {
   const tickDate = (tickItem) => new Date(tickItem).getDate();
@@ -93,5 +94,9 @@ function ActivityChart({ sessions }) {
     </section>
   );
 }
+
+ActivityChart.propTypes = {
+  sessions: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default ActivityChart;

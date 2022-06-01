@@ -2,6 +2,7 @@ import iconCalorie from '../../assets/img/icon-calories.png';
 import iconGlucide from '../../assets/img/icon-glucides.png';
 import iconLipide from '../../assets/img/icon-lipides.png';
 import iconProtein from '../../assets/img/icon-proteines.png';
+import PropTypes from 'prop-types';
 
 function CountChart({ calorie, protein, carbohydrate, lipid }) {
   return (
@@ -45,5 +46,12 @@ function CountChart({ calorie, protein, carbohydrate, lipid }) {
     </section>
   );
 }
+
+CountChart.propTypes = {
+  calorie: PropTypes.number,
+  protein: PropTypes.number,
+  carbohydrate: PropTypes.number,
+  lipid: PropTypes.number,
+};
 
 export default CountChart;

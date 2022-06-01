@@ -7,6 +7,7 @@ import {
   Rectangle,
   ResponsiveContainer,
 } from 'recharts';
+import PropTypes from 'prop-types';
 
 function AverageChart({ sessions }) {
   const tickDay = (day) => {
@@ -100,5 +101,9 @@ function AverageChart({ sessions }) {
     </div>
   );
 }
+
+AverageChart.propTypes = {
+  sessions: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default AverageChart;

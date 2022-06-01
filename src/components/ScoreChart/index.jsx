@@ -1,4 +1,5 @@
 import { PieChart, Pie, ResponsiveContainer, Cell } from 'recharts';
+import PropTypes from 'prop-types';
 
 function ScoreChart({ score }) {
   const data = [
@@ -55,5 +56,9 @@ function ScoreChart({ score }) {
     </div>
   );
 }
+
+ScoreChart.propTypes = {
+  score: PropTypes.number,
+};
 
 export default ScoreChart;

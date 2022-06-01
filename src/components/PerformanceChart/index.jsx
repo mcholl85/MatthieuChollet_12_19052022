@@ -5,6 +5,7 @@ import {
   PolarAngleAxis,
   ResponsiveContainer,
 } from 'recharts';
+import PropTypes from 'prop-types';
 
 function PerformanceChart({ data }) {
   const tickKind = (index) => {
@@ -46,5 +47,9 @@ function PerformanceChart({ data }) {
     </div>
   );
 }
+
+PerformanceChart.propTypes = {
+  data: PropTypes.object,
+};
 
 export default PerformanceChart;

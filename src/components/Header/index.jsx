@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function Header({ firstName }) {
   return (
     <header className="header">
@@ -10,5 +12,9 @@ function Header({ firstName }) {
     </header>
   );
 }
+
+Header.propTypes = {
+  firstName: PropTypes.string,
+};
 
 export default Header;

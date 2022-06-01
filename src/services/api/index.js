@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 export function useFetch(userId, params) {
-  const [data, setData] = useState(true);
+  const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -17,7 +17,6 @@ export function useFetch(userId, params) {
         const data = await res.json();
         setData(data);
       } catch (err) {
-        console.log(err);
         setError(true);
       } finally {
         setLoading(false);
@@ -25,10 +24,10 @@ export function useFetch(userId, params) {
     }
     fetchData();
   }, [url]);
-  return { isLoading, data: data.data, error };
+  return { isLoading, data, error };
 }
 
 useFetch.propTypes = {
-  userId: PropTypes.string,
+  userId: PropTypes.string.isRequired,
   params: PropTypes.string,
 };

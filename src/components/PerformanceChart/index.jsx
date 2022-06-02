@@ -5,9 +5,14 @@ import {
   PolarAngleAxis,
   ResponsiveContainer,
 } from 'recharts';
-import PropTypes from 'prop-types';
+import { useFetch } from '../../services/api';
+import { UserIdContext } from '../../utils/context';
+import { useContext } from 'react';
 
-function PerformanceChart({ data }) {
+function PerformanceChart() {
+  const { userId } = useContext(UserIdContext);
+  const { data: performance } = useFetch(userId, 'performance');
+
   const tickKind = (index) => {
     switch (index) {
       case 1:
@@ -28,28 +33,31 @@ function PerformanceChart({ data }) {
   };
 
   return (
-    <div className="performance">
-      <ResponsiveContainer width="100%" height="100%">
-        <RadarChart cx="50%" cy="50%" outerRadius="60%" data={data.data}>
-          <PolarGrid stroke="#FFFFFF" radialLines={false} />
-          <PolarAngleAxis
-            dataKey="kind"
-            tick={{
-              fill: '#FFFFFF',
-              fontSize: '12px',
-              fontWeight: '500',
-            }}
-            tickFormatter={tickKind}
-          />
-          <Radar dataKey="value" fill="#FF0101" fillOpacity={0.7} />
-        </RadarChart>
-      </ResponsiveContainer>
-    </div>
+    performance && (
+      <div className="performance">
+        <ResponsiveContainer width="100%" height="100%">
+          <RadarChart
+            cx="50%"
+            cy="50%"
+            outerRadius="60%"
+            data={performance.data.data}
+          >
+            <PolarGrid stroke="#FFFFFF" radialLines={false} />
+            <PolarAngleAxis
+              dataKey="kind"
+              tick={{
+                fill: '#FFFFFF',
+                fontSize: '12px',
+                fontWeight: '500',
+              }}
+              tickFormatter={tickKind}
+            />
+            <Radar dataKey="value" fill="#FF0101" fillOpacity={0.7} />
+          </RadarChart>
+        </ResponsiveContainer>
+      </div>
+    )
   );
 }
-
-PerformanceChart.propTypes = {
-  data: PropTypes.object,
-};
 
 export default PerformanceChart;

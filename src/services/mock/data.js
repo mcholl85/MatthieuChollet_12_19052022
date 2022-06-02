@@ -1,3 +1,5 @@
+export const USE_MOCKDATA = false;
+
 export const USER_DATA = {
   data: {
     id: 12,

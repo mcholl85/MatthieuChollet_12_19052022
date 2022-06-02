@@ -7,9 +7,14 @@ import {
   Rectangle,
   ResponsiveContainer,
 } from 'recharts';
-import PropTypes from 'prop-types';
+import { useFetch } from '../../services/api';
+import { UserIdContext } from '../../utils/context';
+import { useContext } from 'react';
 
-function AverageChart({ sessions }) {
+function AverageChart() {
+  const { userId } = useContext(UserIdContext);
+  const { data: averageSessions } = useFetch(userId, 'average-sessions');
+
   const tickDay = (day) => {
     if (isNaN(day)) {
       return Error('Not a number');
@@ -62,48 +67,50 @@ function AverageChart({ sessions }) {
   };
 
   return (
-    <div className="average">
-      <h2 className="average__title">Durée moyenne des sessions</h2>
-      <ResponsiveContainer className="average__chart" width="92%" height="80%">
-        <LineChart data={sessions}>
-          <defs>
-            <linearGradient id="colorLine">
-              <stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.4032} />
-              <stop offset="100%" stopColor="#FFFFFF" stopOpacity={1} />
-            </linearGradient>
-          </defs>
-          <CartesianGrid vertical={false} horizontal={false} />
-          <XAxis
-            dataKey="day"
-            axisLine={false}
-            tickLine={false}
-            tickFormatter={tickDay}
-            tick={{ fill: '#FFFFFF', opacity: '0.5' }}
-            tickMargin={10}
-          />
-          <Tooltip cursor={<CustomCursor />} content={<CustomTooltip />} />
-          <Line
-            type="monotone"
-            dataKey="sessionLength"
-            stroke="url('#colorLine')"
-            strokeWidth={2}
-            dot={false}
-            activeDot={{
-              r: 4,
-              fill: '#FFFFFF',
-              stroke: '#FFFFFF',
-              strokeOpacity: 0.1983,
-              strokeWidth: 9,
-            }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
+    averageSessions && (
+      <div className="average">
+        <h2 className="average__title">Durée moyenne des sessions</h2>
+        <ResponsiveContainer
+          className="average__chart"
+          width="92%"
+          height="80%"
+        >
+          <LineChart data={averageSessions.data.sessions}>
+            <defs>
+              <linearGradient id="colorLine">
+                <stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.4032} />
+                <stop offset="100%" stopColor="#FFFFFF" stopOpacity={1} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid vertical={false} horizontal={false} />
+            <XAxis
+              dataKey="day"
+              axisLine={false}
+              tickLine={false}
+              tickFormatter={tickDay}
+              tick={{ fill: '#FFFFFF', opacity: '0.5' }}
+              tickMargin={10}
+            />
+            <Tooltip cursor={<CustomCursor />} content={<CustomTooltip />} />
+            <Line
+              type="monotone"
+              dataKey="sessionLength"
+              stroke="url('#colorLine')"
+              strokeWidth={2}
+              dot={false}
+              activeDot={{
+                r: 4,
+                fill: '#FFFFFF',
+                stroke: '#FFFFFF',
+                strokeOpacity: 0.1983,
+                strokeWidth: 9,
+              }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    )
   );
 }
-
-AverageChart.propTypes = {
-  sessions: PropTypes.arrayOf(PropTypes.object),
-};
 
 export default AverageChart;

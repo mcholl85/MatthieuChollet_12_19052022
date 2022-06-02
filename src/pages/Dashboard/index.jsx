@@ -6,6 +6,7 @@ import AverageChart from '../../components/AverageChart';
 import PerformanceChart from '../../components/PerformanceChart';
 import ScoreChart from '../../components/ScoreChart';
 import CountChart from '../../components/CountChart';
+import { UserIdContext } from '../../utils/context';
 import {
   USER_DATA,
   PERFORMANCE_DATA,
@@ -13,21 +14,10 @@ import {
   ACTIVITY_DATA,
 } from '../../services/mock/data';
 
-const USE_MOCKDATA = false;
-
 function Dashboard() {
   const { id: userId } = useParams();
-  let { data: user, error: userError } = useFetch(userId, '');
-  let { data: activity } = useFetch(userId, 'activity');
-  let { data: averageSessions } = useFetch(userId, 'average-sessions');
-  let { data: performance } = useFetch(userId, 'performance');
 
-  if (USE_MOCKDATA) {
-    user = USER_DATA;
-    activity = ACTIVITY_DATA;
-    averageSessions = AVERAGE_DATA;
-    performance = PERFORMANCE_DATA;
-  }
+  let { data: user, error: userError } = useFetch(userId, '');
 
   if (user === 'can not get user') {
     return (
@@ -48,23 +38,23 @@ function Dashboard() {
   return (
     user && (
       <main className="dashboard">
-        <Header firstName={user.data.userInfos.firstName} />
-        <section className="dashboard__charts">
-          {activity && <ActivityChart sessions={activity.data.sessions} />}
-          <div className="dashboard__charts__3">
-            {averageSessions && (
-              <AverageChart sessions={averageSessions.data.sessions} />
-            )}
-            {performance && <PerformanceChart data={performance.data} />}
-            <ScoreChart score={user.data.score || user.data.todayScore} />
-          </div>
-        </section>
-        <CountChart
-          calorie={user.data.keyData.calorieCount}
-          protein={user.data.keyData.proteinCount}
-          carbohydrate={user.data.keyData.carbohydrateCount}
-          lipid={user.data.keyData.lipidCount}
-        />
+        <UserIdContext.Provider value={{ userId }}>
+          <Header firstName={user.data.userInfos.firstName} />
+          <section className="dashboard__charts">
+            <ActivityChart />
+            <div className="dashboard__charts__3">
+              <AverageChart />
+              <PerformanceChart />
+              <ScoreChart score={user.data.score || user.data.todayScore} />
+            </div>
+          </section>
+          <CountChart
+            calorie={user.data.keyData.calorieCount}
+            protein={user.data.keyData.proteinCount}
+            carbohydrate={user.data.keyData.carbohydrateCount}
+            lipid={user.data.keyData.lipidCount}
+          />
+        </UserIdContext.Provider>
       </main>
     )
   );

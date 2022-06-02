@@ -8,13 +8,15 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-import { useFetch } from '../../services/api';
-import { UserIdContext } from '../../utils/context';
 import { useContext } from 'react';
+import PropTypes from 'prop-types';
+import useFetch from '../../services/api';
+import UserContext from '../../utils/context';
 
 function ActivityChart() {
-  const { userId } = useContext(UserIdContext);
+  const { userId } = useContext(UserContext);
   const { data: activity } = useFetch(userId, 'activity');
+  const getActivitySessionsData = (data) => data.data.sessions;
 
   const tickDate = (tickItem) => new Date(tickItem).getDate();
 
@@ -30,6 +32,11 @@ function ActivityChart() {
     return null;
   };
 
+  CustomTooltip.propTypes = {
+    active: PropTypes.bool,
+    payload: PropTypes.array,
+  };
+
   return (
     activity && (
       <section className="activity">
@@ -39,7 +46,7 @@ function ActivityChart() {
           width="92%"
           height="90%"
         >
-          <BarChart barGap={8} data={activity.data.sessions}>
+          <BarChart barGap={8} data={getActivitySessionsData(activity)}>
             <CartesianGrid strokeDasharray="2 2" vertical={false} />
             <XAxis
               dataKey="day"

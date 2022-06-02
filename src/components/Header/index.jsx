@@ -1,6 +1,10 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import UserContext from '../../utils/context';
 
-function Header({ firstName }) {
+function Header() {
+  const { userData } = useContext(UserContext);
+  const { firstName } = userData.data.userInfos;
+
   return (
     <header className="header">
       <h1 className="header__title">
@@ -12,9 +16,5 @@ function Header({ firstName }) {
     </header>
   );
 }
-
-Header.propTypes = {
-  firstName: PropTypes.string,
-};
 
 export default Header;

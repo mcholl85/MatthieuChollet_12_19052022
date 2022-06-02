@@ -1,9 +1,9 @@
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/img/logo.png';
 import iconYoga from '../../assets/img/icon-yoga.png';
 import iconSwim from '../../assets/img/icon-swim.png';
 import iconBike from '../../assets/img/icon-bike.png';
 import iconStrong from '../../assets/img/icon-strong.png';
-import { Link, NavLink } from 'react-router-dom';
 
 function Navbar() {
   return (

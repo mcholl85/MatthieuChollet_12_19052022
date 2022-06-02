@@ -1,7 +1,12 @@
-import { PieChart, Pie, ResponsiveContainer, Cell } from 'recharts';
-import PropTypes from 'prop-types';
+/* eslint object-curly-newline: ["error", "never"] */
 
-function ScoreChart({ score }) {
+import { PieChart, Pie, ResponsiveContainer, Cell } from 'recharts';
+import { useContext } from 'react';
+import UserContext from '../../utils/context';
+
+function ScoreChart() {
+  const { userData } = useContext(UserContext);
+  const score = userData.data.score || userData.data.todayScore;
   const data = [
     { name: 'sucessed', value: score },
     { name: 'goal', value: 1 - score },
@@ -56,9 +61,5 @@ function ScoreChart({ score }) {
     </div>
   );
 }
-
-ScoreChart.propTypes = {
-  score: PropTypes.number,
-};
 
 export default ScoreChart;

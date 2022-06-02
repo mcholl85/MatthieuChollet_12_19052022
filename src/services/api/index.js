@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-export function useFetch(userId, params) {
-  const [data, setData] = useState(null);
+export default function useFetch(userId, params) {
+  const [data, setData] = useState();
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -13,17 +13,18 @@ export function useFetch(userId, params) {
     setLoading(true);
     async function fetchData() {
       try {
-        const res = await fetch(url);
-        const data = await res.json();
-        setData(data);
+        const response = await fetch(url);
+        setData(await response.json());
       } catch (err) {
+        console.log(err);
         setError(true);
       } finally {
         setLoading(false);
       }
     }
     fetchData();
-  }, [url]);
+  }, []);
+
   return { isLoading, data, error };
 }
 

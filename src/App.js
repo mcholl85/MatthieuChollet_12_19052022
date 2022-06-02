@@ -1,6 +1,6 @@
-import Navbar from './components/Navbar';
-import Dashboard from './pages/Dashboard';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import Navbar from './components/Navbar/index.jsx';
+import Dashboard from './pages/Dashboard/index.jsx';
 
 function App() {
   return (

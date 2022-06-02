@@ -7,36 +7,40 @@ import {
   Rectangle,
   ResponsiveContainer,
 } from 'recharts';
-import { useFetch } from '../../services/api';
-import { UserIdContext } from '../../utils/context';
 import { useContext } from 'react';
+import PropTypes from 'prop-types';
+import useFetch from '../../services/api';
+import UserContext from '../../utils/context';
 
 function AverageChart() {
-  const { userId } = useContext(UserIdContext);
+  const { userId } = useContext(UserContext);
   const { data: averageSessions } = useFetch(userId, 'average-sessions');
+  const getAverageSessionsData = (data) => data.data.sessions;
 
   const tickDay = (day) => {
-    if (isNaN(day)) {
+    if (Number.isNaN(day)) {
       return Error('Not a number');
-    } else if (day < 1 || day > 7) {
+    }
+    if (day < 1 || day > 7) {
       return Error('Wrong number');
-    } else {
-      switch (day) {
-        case 1:
-          return 'L';
-        case 2:
-          return 'M';
-        case 3:
-          return 'M';
-        case 4:
-          return 'J';
-        case 5:
-          return 'V';
-        case 6:
-          return 'S';
-        case 7:
-          return 'D';
-      }
+    }
+    switch (day) {
+      case 1:
+        return 'L';
+      case 2:
+        return 'M';
+      case 3:
+        return 'M';
+      case 4:
+        return 'J';
+      case 5:
+        return 'V';
+      case 6:
+        return 'S';
+      case 7:
+        return 'D';
+      default:
+        return '';
     }
   };
   const CustomTooltip = ({ active, payload }) => {
@@ -48,6 +52,11 @@ function AverageChart() {
       );
     }
     return null;
+  };
+
+  CustomTooltip.propTypes = {
+    active: PropTypes.bool,
+    payload: PropTypes.array,
   };
 
   const CustomCursor = (props) => {
@@ -66,6 +75,12 @@ function AverageChart() {
     );
   };
 
+  CustomCursor.propTypes = {
+    points: PropTypes.array,
+    width: PropTypes.number,
+    height: PropTypes.number,
+  };
+
   return (
     averageSessions && (
       <div className="average">
@@ -75,7 +90,7 @@ function AverageChart() {
           width="92%"
           height="80%"
         >
-          <LineChart data={averageSessions.data.sessions}>
+          <LineChart data={getAverageSessionsData(averageSessions)}>
             <defs>
               <linearGradient id="colorLine">
                 <stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.4032} />

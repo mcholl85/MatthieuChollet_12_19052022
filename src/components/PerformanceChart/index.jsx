@@ -5,13 +5,14 @@ import {
   PolarAngleAxis,
   ResponsiveContainer,
 } from 'recharts';
-import { useFetch } from '../../services/api';
-import { UserIdContext } from '../../utils/context';
 import { useContext } from 'react';
+import useFetch from '../../services/api';
+import UserContext from '../../utils/context';
 
 function PerformanceChart() {
-  const { userId } = useContext(UserIdContext);
+  const { userId } = useContext(UserContext);
   const { data: performance } = useFetch(userId, 'performance');
+  const getPerformanceData = (data) => data.data.data;
 
   const tickKind = (index) => {
     switch (index) {
@@ -28,7 +29,7 @@ function PerformanceChart() {
       case 6:
         return 'Intensité';
       default:
-        new Error('Wrong index of kind');
+        return Error('Wrong index of kind');
     }
   };
 
@@ -40,7 +41,7 @@ function PerformanceChart() {
             cx="50%"
             cy="50%"
             outerRadius="60%"
-            data={performance.data.data}
+            data={getPerformanceData(performance)}
           >
             <PolarGrid stroke="#FFFFFF" radialLines={false} />
             <PolarAngleAxis

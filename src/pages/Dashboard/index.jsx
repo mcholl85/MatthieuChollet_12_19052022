@@ -1,25 +1,18 @@
 import { useParams } from 'react-router-dom';
-import { useFetch } from '../../services/api';
-import Header from '../../components/Header';
-import ActivityChart from '../../components/ActivityChart';
-import AverageChart from '../../components/AverageChart';
-import PerformanceChart from '../../components/PerformanceChart';
-import ScoreChart from '../../components/ScoreChart';
-import CountChart from '../../components/CountChart';
-import { UserIdContext } from '../../utils/context';
-import {
-  USER_DATA,
-  PERFORMANCE_DATA,
-  AVERAGE_DATA,
-  ACTIVITY_DATA,
-} from '../../services/mock/data';
+import useFetch from '../../services/api';
+import Header from '../../components/Header/index.jsx';
+import ActivityChart from '../../components/ActivityChart/index.jsx';
+import AverageChart from '../../components/AverageChart/index.jsx';
+import PerformanceChart from '../../components/PerformanceChart/index.jsx';
+import ScoreChart from '../../components/ScoreChart/index.jsx';
+import CountChart from '../../components/CountChart/index.jsx';
+import UserContext from '../../utils/context';
 
 function Dashboard() {
   const { id: userId } = useParams();
+  const { data: userData, error: userError } = useFetch(userId, '');
 
-  let { data: user, error: userError } = useFetch(userId, '');
-
-  if (user === 'can not get user') {
+  if (userData === 'can not get user') {
     return (
       <main className="dashboard">
         <h1>UserID not found</h1>
@@ -36,26 +29,21 @@ function Dashboard() {
   }
 
   return (
-    user && (
-      <main className="dashboard">
-        <UserIdContext.Provider value={{ userId }}>
-          <Header firstName={user.data.userInfos.firstName} />
+    userData && (
+      <UserContext.Provider value={{ userId, userData }}>
+        <main className="dashboard">
+          <Header />
           <section className="dashboard__charts">
             <ActivityChart />
             <div className="dashboard__charts__3">
               <AverageChart />
               <PerformanceChart />
-              <ScoreChart score={user.data.score || user.data.todayScore} />
+              <ScoreChart />
             </div>
           </section>
-          <CountChart
-            calorie={user.data.keyData.calorieCount}
-            protein={user.data.keyData.proteinCount}
-            carbohydrate={user.data.keyData.carbohydrateCount}
-            lipid={user.data.keyData.lipidCount}
-          />
-        </UserIdContext.Provider>
-      </main>
+          <CountChart />
+        </main>
+      </UserContext.Provider>
     )
   );
 }

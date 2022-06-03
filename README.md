@@ -24,20 +24,32 @@
 ### Back-End - Micro API
 
 1. Clone the repository of the Back-End :
-   `git clone https://github.com/mcholl85/P9-front-end-dashboard.git`
+   ```
+   git clone https://github.com/mcholl85/P9-front-end-dashboard.git
+   ```
 2. Install the dependencies with :
-   `npm install`
+   ```
+   npm install
+   ```
 3. Launch the micro API (default port: 3000) :
-   `npm run start`
+   ```
+   npm run start
+   ```
 
 ### Front-End
 
 1. Clone the repository of the Front-End :
-   `git clone https://github.com/mcholl85/MatthieuChollet_12_19052022`
+   ```
+   git clone https://github.com/mcholl85/MatthieuChollet_12_19052022
+   ```
 2. Install the dependencies with :
-   `npm install`
+   ```
+   npm install
+   ```
 3. Launch the project (default port: 3001) :
-   `npm run start`
+   ```
+   npm run start
+   ```
 
 ## Author
 

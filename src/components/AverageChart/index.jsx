@@ -17,7 +17,7 @@ function AverageChart() {
   const { data: averageSessions } = useFetch(userId, 'average-sessions');
   const getAverageSessionsData = (data) => data.data.sessions;
 
-  const tickDay = (day) => {
+  const getFirstLetterOfDay = (day) => {
     if (Number.isNaN(day)) {
       return Error('Not a number');
     }
@@ -102,7 +102,7 @@ function AverageChart() {
               dataKey="day"
               axisLine={false}
               tickLine={false}
-              tickFormatter={tickDay}
+              tickFormatter={getFirstLetterOfDay}
               tick={{ fill: '#FFFFFF', opacity: '0.5' }}
               tickMargin={10}
             />

@@ -18,7 +18,7 @@ function ActivityChart() {
   const { data: activity } = useFetch(userId, 'activity');
   const getActivitySessionsData = (data) => data.data.sessions;
 
-  const tickDate = (tickItem) => new Date(tickItem).getDate();
+  const getNbOfDay = (tickItem) => new Date(tickItem).getDate();
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
@@ -53,7 +53,7 @@ function ActivityChart() {
               tickLine={false}
               axisLine={false}
               tick={{ fill: '#9B9EAC' }}
-              tickFormatter={tickDate}
+              tickFormatter={getNbOfDay}
               tickMargin="16"
             />
             <YAxis

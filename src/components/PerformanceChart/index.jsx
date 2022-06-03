@@ -14,7 +14,7 @@ function PerformanceChart() {
   const { data: performance } = useFetch(userId, 'performance');
   const getPerformanceData = (data) => data.data.data;
 
-  const tickKind = (index) => {
+  const getFrenchKind = (index) => {
     switch (index) {
       case 1:
         return 'Cardio';
@@ -51,7 +51,7 @@ function PerformanceChart() {
                 fontSize: '12px',
                 fontWeight: '500',
               }}
-              tickFormatter={tickKind}
+              tickFormatter={getFrenchKind}
             />
             <Radar dataKey="value" fill="#FF0101" fillOpacity={0.7} />
           </RadarChart>

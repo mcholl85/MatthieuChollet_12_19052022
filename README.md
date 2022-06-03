@@ -53,4 +53,4 @@
 
 ## Author
 
-**Matthieu Chollet**
+Matthieu Chollet

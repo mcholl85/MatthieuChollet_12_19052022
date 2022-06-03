@@ -40,7 +40,7 @@ function PerformanceChart() {
           <RadarChart
             cx="50%"
             cy="50%"
-            outerRadius="60%"
+            outerRadius="70%"
             data={getPerformanceData(performance)}
           >
             <PolarGrid stroke="#FFFFFF" radialLines={false} />

@@ -1,0 +1,183 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> components/CountChart/index.jsx</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">SportSee</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Components</h3><ul><li><a href="ActivityChart.html">ActivityChart</a></li><li><a href="AverageChart.html">AverageChart</a></li><li><a href="CountChart.html">CountChart</a></li><li><a href="Dashboard.html">Dashboard</a></li><li><a href="Header.html">Header</a></li><li><a href="Navbar.html">Navbar</a></li><li><a href="PerformanceChart.html">PerformanceChart</a></li><li><a href="ScoreChart.html">ScoreChart</a></li></ul><h3><a href="global.html">Global</a></h3></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>components/CountChart/index.jsx</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useContext } from 'react';
+import iconCalorie from '../../assets/img/icon-calories.png';
+import iconGlucide from '../../assets/img/icon-glucides.png';
+import iconLipide from '../../assets/img/icon-lipides.png';
+import iconProtein from '../../assets/img/icon-proteines.png';
+import UserContext from '../../utils/context';
+
+/**
+ * Component for showing Statistic User.
+ * @component
+ */
+
+function CountChart() {
+  const { userData } = useContext(UserContext);
+  const numberOfCalorie = userData.data.keyData.calorieCount;
+  const numberOfProtein = userData.data.keyData.proteinCount;
+  const numberOfCarbohydrate = userData.data.keyData.carbohydrateCount;
+  const numberOfLipid = userData.data.keyData.lipidCount;
+
+  return (
+    &lt;section className="count">
+      &lt;div className="count__article">
+        &lt;div className="count__article__icon count__article__icon--calorie">
+          &lt;img src={iconCalorie} alt="icon calorie" />
+        &lt;/div>
+        &lt;div>
+          &lt;p className="count__article__data">{`${numberOfCalorie}kCal`}&lt;/p>
+          &lt;p className="count__article__unit">Calories&lt;/p>
+        &lt;/div>
+      &lt;/div>
+      &lt;div className="count__article">
+        &lt;div className="count__article__icon count__article__icon--protein">
+          &lt;img src={iconProtein} alt="icon proteine" />
+        &lt;/div>
+        &lt;div>
+          &lt;p className="count__article__data">{`${numberOfProtein}g`}&lt;/p>
+          &lt;p className="count__article__unit">Proteines&lt;/p>
+        &lt;/div>
+      &lt;/div>
+      &lt;div className="count__article">
+        &lt;div className="count__article__icon count__article__icon--glucide">
+          &lt;img src={iconGlucide} alt="icon glucide" />
+        &lt;/div>
+        &lt;div>
+          &lt;p className="count__article__data">{`${numberOfCarbohydrate}g`}&lt;/p>
+          &lt;p className="count__article__unit">Glucides&lt;/p>
+        &lt;/div>
+      &lt;/div>
+      &lt;div className="count__article">
+        &lt;div className="count__article__icon count__article__icon--lipide">
+          &lt;img src={iconLipide} alt="icon lipide" />
+        &lt;/div>
+        &lt;div>
+          &lt;p className="count__article__data">{`${numberOfLipid}g`}&lt;/p>
+          &lt;p className="count__article__unit">Lipides&lt;/p>
+        &lt;/div>
+      &lt;/div>
+    &lt;/section>
+  );
+}
+
+export default CountChart;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

@@ -13,6 +13,11 @@ import PropTypes from 'prop-types';
 import useFetch from '../../services/api';
 import UserContext from '../../utils/context';
 
+/**
+ * Component for showing Activity's chart.
+ * @component
+ */
+
 function ActivityChart() {
   const { userId } = useContext(UserContext);
   const { data: activity } = useFetch(userId, 'activity');
@@ -20,6 +25,13 @@ function ActivityChart() {
 
   const getNbOfDay = (tickItem) => new Date(tickItem).getDate();
 
+  /**
+   * function for custom tooltip
+   * @function
+   * @param {boolean} active - If set true, the tooltip is displayed. If set false, is hidden.
+   * @param {array} payload -The source data of the content to be displayed in the tooltip.
+   * @returns React element with the duration of a session
+   */
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (

@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> index.jsx</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">My React components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>index.jsx</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from 'recharts';
+import { useContext } from 'react';
+import PropTypes from 'prop-types';
+import useFetch from '../../services/api';
+import UserContext from '../../utils/context';
+
+/**
+ * Component for showing Activity's chart.
+ * @constructor
+ */
+
+function ActivityChart() {
+  const { userId } = useContext(UserContext);
+  const { data: activity } = useFetch(userId, 'activity');
+  const getActivitySessionsData = (data) => data.data.sessions;
+
+  const getNbOfDay = (tickItem) => new Date(tickItem).getDate();
+
+  /**
+   * Component for custom tooltip
+   * @function
+   * @param {boolean} active - If set true, the tooltip is displayed. If set false, is hidden.
+   * @param {array} payload -The source data of the content to be displayed in the tooltip.
+   * @return the react element with the weight &amp; the number of calories
+   */
+  const CustomTooltip = ({ active, payload }) => {
+    if (active &amp;&amp; payload &amp;&amp; payload.length) {
+      return (
+        &lt;div className="activity__chart__tooltip">
+          &lt;p>{`${payload[0].value}`}kg&lt;/p>
+          &lt;p>{`${payload[1].value}`}Kcal&lt;/p>
+        &lt;/div>
+      );
+    }
+    return null;
+  };
+
+  CustomTooltip.propTypes = {
+    active: PropTypes.bool,
+    payload: PropTypes.array,
+  };
+
+  return (
+    activity &amp;&amp; (
+      &lt;section className="activity">
+        &lt;h2 className="activity__title">Activité quotidienne&lt;/h2>
+        &lt;ResponsiveContainer
+          className="activity__chart"
+          width="92%"
+          height="90%"
+        >
+          &lt;BarChart barGap={8} data={getActivitySessionsData(activity)}>
+            &lt;CartesianGrid strokeDasharray="2 2" vertical={false} />
+            &lt;XAxis
+              dataKey="day"
+              tickLine={false}
+              axisLine={false}
+              tick={{ fill: '#9B9EAC' }}
+              tickFormatter={getNbOfDay}
+              tickMargin="16"
+            />
+            &lt;YAxis
+              yAxisId="right"
+              dataKey="kilogram"
+              orientation="right"
+              tickLine={false}
+              axisLine={false}
+              tick={{ fill: '#9B9EAC' }}
+              domain={['dataMin-1', 'dataMax+2']}
+            />
+            &lt;YAxis
+              yAxisId="left"
+              dataKey="calories"
+              orientation="left"
+              hide={true}
+            />
+            &lt;Tooltip content={&lt;CustomTooltip />} />
+            &lt;Legend
+              wrapperStyle={{ marginTop: '-40px', paddingRight: '20px' }}
+              verticalAlign="top"
+              align="right"
+              iconSize={8}
+              payload={[
+                {
+                  value: 'Poids (kg)',
+                  type: 'circle',
+                  id: 'ID01',
+                  color: '#282D30',
+                },
+                {
+                  value: 'Calories brûlées (kCal)',
+                  type: 'circle',
+                  id: 'ID02',
+                  color: '#E60000',
+                },
+              ]}
+            />
+            &lt;Bar
+              yAxisId="right"
+              dataKey="kilogram"
+              fill="#282D30"
+              barSize={7}
+              radius={[3, 3, 0, 0]}
+            />
+            &lt;Bar
+              yAxisId="left"
+              dataKey="calories"
+              fill="#E60000"
+              barSize={7}
+              radius={[3, 3, 0, 0]}
+            />
+          &lt;/BarChart>
+        &lt;/ResponsiveContainer>
+      &lt;/section>
+    )
+  );
+}
+
+export default ActivityChart;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

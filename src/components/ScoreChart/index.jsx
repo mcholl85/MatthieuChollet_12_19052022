@@ -4,6 +4,11 @@ import { PieChart, Pie, ResponsiveContainer, Cell } from 'recharts';
 import { useContext } from 'react';
 import UserContext from '../../utils/context';
 
+/**
+ * Component for showing Score's chart.
+ * @component
+ */
+
 function ScoreChart() {
   const { userData } = useContext(UserContext);
   const score = userData.data.score || userData.data.todayScore;

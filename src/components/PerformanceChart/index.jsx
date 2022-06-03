@@ -9,10 +9,21 @@ import { useContext } from 'react';
 import useFetch from '../../services/api';
 import UserContext from '../../utils/context';
 
+/**
+ * Component for showing Performance's chart.
+ * @component
+ */
+
 function PerformanceChart() {
   const { userId } = useContext(UserContext);
   const { data: performance } = useFetch(userId, 'performance');
   const getPerformanceData = (data) => data.data.data;
+
+  /**
+   * @function
+   * @param {number} index
+   * @returns french tick
+   */
 
   const getFrenchKind = (index) => {
     switch (index) {

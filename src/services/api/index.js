@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Retrieve lists of JSONPlaceholder users
+ * @function
+ * @param {string} userId
+ * @param {string} params
+ * @returns Object data, boolean error & isLoading
+ */
+
 export default function useFetch(userId, params) {
   const [data, setData] = useState();
   const [isLoading, setLoading] = useState(true);

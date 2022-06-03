@@ -8,6 +8,11 @@ import ScoreChart from '../../components/ScoreChart/index.jsx';
 import CountChart from '../../components/CountChart/index.jsx';
 import UserContext from '../../utils/context';
 
+/**
+ * Component for showing Dashboard.
+ * @component
+ */
+
 function Dashboard() {
   const { id: userId } = useParams();
   const { data: userData, error: userError } = useFetch(userId, '');

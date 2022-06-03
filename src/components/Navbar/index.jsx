@@ -5,6 +5,11 @@ import iconSwim from '../../assets/img/icon-swim.png';
 import iconBike from '../../assets/img/icon-bike.png';
 import iconStrong from '../../assets/img/icon-strong.png';
 
+/**
+ * Component for showing Navbar.
+ * @component
+ */
+
 function Navbar() {
   return (
     <nav className="nav">

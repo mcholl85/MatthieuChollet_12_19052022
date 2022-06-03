@@ -1,6 +1,11 @@
 import { useContext } from 'react';
 import UserContext from '../../utils/context';
 
+/**
+ * Component for showing Header.
+ * @component
+ */
+
 function Header() {
   const { userData } = useContext(UserContext);
   const { firstName } = userData.data.userInfos;

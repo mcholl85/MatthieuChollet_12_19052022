@@ -5,6 +5,11 @@ import iconLipide from '../../assets/img/icon-lipides.png';
 import iconProtein from '../../assets/img/icon-proteines.png';
 import UserContext from '../../utils/context';
 
+/**
+ * Component for showing Statistic User.
+ * @component
+ */
+
 function CountChart() {
   const { userData } = useContext(UserContext);
   const numberOfCalorie = userData.data.keyData.calorieCount;

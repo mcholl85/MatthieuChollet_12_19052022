@@ -12,18 +12,22 @@ import PropTypes from 'prop-types';
 import useFetch from '../../services/api';
 import UserContext from '../../utils/context';
 
+/**
+ * Component for showing Average sessions's chart.
+ * @component
+ */
+
 function AverageChart() {
   const { userId } = useContext(UserContext);
   const { data: averageSessions } = useFetch(userId, 'average-sessions');
   const getAverageSessionsData = (data) => data.data.sessions;
 
+  /**
+   * Function to get the first Letter of a day
+   * @function
+   * @param {number} day - Day of the week 1~7
+   */
   const getFirstLetterOfDay = (day) => {
-    if (Number.isNaN(day)) {
-      return Error('Not a number');
-    }
-    if (day < 1 || day > 7) {
-      return Error('Wrong number');
-    }
     switch (day) {
       case 1:
         return 'L';
@@ -40,9 +44,16 @@ function AverageChart() {
       case 7:
         return 'D';
       default:
-        return '';
+        return Error('Wrong number');
     }
   };
+  /**
+   * function for custom tooltip
+   * @function
+   * @param {boolean} active - If set true, the tooltip is displayed. If set false, is hidden.
+   * @param {array} payload -The source data of the content to be displayed in the tooltip.
+   * @return React element with the weight & the number of calories
+   */
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -59,6 +70,12 @@ function AverageChart() {
     payload: PropTypes.array,
   };
 
+  /**
+   * function for custom cursor to the tooltip
+   * @function
+   * @param {Object} props - the option is the configuration of cursor.
+   * @returns React element Rectangle
+   */
   const CustomCursor = (props) => {
     const { points, width, height } = props;
     const { x, y } = points[0];
